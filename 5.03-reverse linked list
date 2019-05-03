@@ -1,4 +1,5 @@
 //easy level
+//首先要将head指向的下一个节点保存，然后就可以将head指向当前节点
 /**
  * Definition for singly-linked list.
  * struct ListNode {
