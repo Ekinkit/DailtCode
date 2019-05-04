@@ -1,0 +1,21 @@
+//easy level
+//判断输入的括号类字符串是否合法 需要用到栈的思想，当为左括号时（[{,直接进栈，为右括号时，需要和当前栈顶进行匹配，（考虑此时栈顶是否为空的情况）
+//最后匹配完栈应该是空的
+class Solution {
+public:
+    bool isValid(string s) {
+        stack<char> parentheses;
+        for(int i=0; i<s.size(); i++){
+            if(s[i]=='(' || s[i]=='[' || s[i]=='{') parentheses.push(s[i]);
+            else{
+                if (parentheses.empty()) return false;
+                if (s[i]==')' && parentheses.top()!= '(') return false;
+                if (s[i]==']' && parentheses.top()!= '[') return false;
+                if (s[i]=='}' && parentheses.top()!= '{') return false;
+                parentheses.pop();
+            }
+            
+        }
+        return parentheses.empty();
+    }
+};
