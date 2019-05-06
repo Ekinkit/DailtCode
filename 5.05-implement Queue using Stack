@@ -1,0 +1,41 @@
+//用到两个栈，一个栈用于存新加入的元素，另一个栈用于保存前一个栈的所有元素。
+//每一次有新的pop、peek操作时，将Input中的所有元素移到output。
+class MyQueue {
+public:
+    /** Initialize your data structure here. */
+    MyQueue() {}
+    
+    /** Push element x to the back of queue. */
+    void push(int x) {
+        input.push(x);
+    }
+    
+    /** Removes the element from in front of queue and returns that element. */
+    int pop() {
+        shiftStack();
+        int val = output.top(); output.pop();
+        return val;
+    }
+    
+    /** Get the front element. */
+    int peek() {
+        shiftStack();
+        return output.top();
+    }
+    
+    /** Returns whether the queue is empty. */
+    bool empty() {
+        return output.empty() && input.empty();
+    }
+    
+    void shiftStack() {
+        if (!output.empty()) return;
+        while (!input.empty()) {
+            output.push(input.top());
+            input.pop();
+        }
+    }
+    
+private:
+    stack<int> input, output;
+};
